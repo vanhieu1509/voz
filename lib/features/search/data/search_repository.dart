@@ -4,9 +4,9 @@ import '../../../core/network/dio_provider.dart';
 import '../domain/search_models.dart';
 
 class SearchRepository {
-  SearchRepository(this._reader);
+  SearchRepository(this._ref);
 
-  final Reader _reader;
+  final Ref _ref;
 
   Future<List<SearchResult>> search(String query, String scope, int page) async {
     return List.generate(
@@ -22,5 +22,5 @@ class SearchRepository {
 
 final searchRepositoryProvider = Provider<SearchRepository>((ref) {
   ref.watch(dioProvider);
-  return SearchRepository(ref.read);
+  return SearchRepository(ref);
 });

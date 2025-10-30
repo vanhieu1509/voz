@@ -7,7 +7,7 @@ import '../data/auth_repository.dart';
 import '../domain/auth_models.dart';
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
-  return AuthRepository(ref.read);
+  return AuthRepository(ref);
 });
 
 final authStateProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {

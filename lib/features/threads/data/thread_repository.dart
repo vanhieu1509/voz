@@ -6,13 +6,13 @@ import '../../../core/parsers/thread_parser.dart';
 import '../domain/thread_models.dart';
 
 class ThreadRepository {
-  ThreadRepository(this._reader);
+  ThreadRepository(this._ref);
 
-  final Reader _reader;
+  final Ref _ref;
 
   Future<ThreadPage> getThread(String threadId, int page) async {
-    final dio = _reader(dioProvider);
-    final parser = _reader(threadParserProvider);
+    final dio = _ref.read(dioProvider);
+    final parser = _ref.read(threadParserProvider);
 
     final path = _resolveThreadPath(threadId, page);
     final response = await dio.get<String>(
@@ -41,7 +41,7 @@ class ThreadRepository {
 
 final threadRepositoryProvider = Provider<ThreadRepository>((ref) {
   ref.watch(dioProvider);
-  return ThreadRepository(ref.read);
+  return ThreadRepository(ref);
 });
 
 String _resolveThreadPath(String threadId, int page) {

@@ -8,13 +8,13 @@ import '../domain/forum_models.dart';
 import '../../threads/domain/thread_models.dart';
 
 class ForumRepository {
-  ForumRepository(this._reader);
+  ForumRepository(this._ref);
 
-  final Reader _reader;
+  final Ref _ref;
 
   Future<List<ForumCategory>> listCategories() async {
-    final dio = _reader(dioProvider);
-    final parser = _reader(forumParserProvider);
+    final dio = _ref.read(dioProvider);
+    final parser = _ref.read(forumParserProvider);
     final response = await dio.get<String>(
       '/',
       options: Options(responseType: ResponseType.plain),
@@ -45,8 +45,8 @@ class ForumRepository {
       );
     }
 
-    final dio = _reader(dioProvider);
-    final parser = _reader(forumThreadListParserProvider);
+    final dio = _ref.read(dioProvider);
+    final parser = _ref.read(forumThreadListParserProvider);
     final path = _resolveForumPath(categoryId, page);
     final response = await dio.get<String>(
       path,
@@ -61,7 +61,7 @@ final forumRepositoryProvider = Provider<ForumRepository>((ref) {
   ref.watch(dioProvider); // ensure dependency
   ref.watch(forumParserProvider);
   ref.watch(forumThreadListParserProvider);
-  return ForumRepository(ref.read);
+  return ForumRepository(ref);
 });
 
 bool _looksLikeForumPath(String categoryId) {
@@ -80,7 +80,7 @@ String _resolveForumPath(String categoryId, int page) {
     sanitized = '$sanitized/';
   }
   if (page > 1) {
-    sanitized = '$sanitizedpage-$page';
+    sanitized = '${sanitized}page-$page';
   }
   return sanitized;
 }

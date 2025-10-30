@@ -8,11 +8,11 @@ import '../../../core/network/dio_provider.dart';
 import '../domain/auth_models.dart';
 
 class AuthRepository {
-  AuthRepository(this._reader)
-      : _dio = _reader(dioProvider),
+  AuthRepository(this._ref)
+      : _dio = _ref.read(dioProvider),
         _storage = const FlutterSecureStorage();
 
-  final Reader _reader;
+  final Ref _ref;
   final Dio _dio;
   final FlutterSecureStorage _storage;
 
