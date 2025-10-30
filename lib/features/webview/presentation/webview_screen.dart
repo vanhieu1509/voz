@@ -18,7 +18,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(widget.url)),
       body: InAppWebView(
-        initialUrlRequest: URLRequest(url: Uri.parse(widget.url)),
+        initialUrlRequest: URLRequest(url: WebUri(widget.url)),
         onWebViewCreated: (controller) => _controller = controller,
       ),
     );

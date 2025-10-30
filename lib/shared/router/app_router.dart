@@ -25,7 +25,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     refreshListenable: authGuard,
     redirect: (context, state) {
       final loggedIn = authGuard.isAuthenticated;
-      final loggingIn = state.location == '/login';
+      final loggingIn = state.uri.path == '/login';
 
       if (!loggedIn) {
         return loggingIn ? null : '/login';
