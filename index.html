@@ -22,11 +22,18 @@ _flutter.buildConfig = {"engineRevision":"36335019a8eab588c3c2ea783c618d90505be2
 <body>
   <script>
     window.addEventListener('load', function (ev) {
-      _flutter.loader.load({
-        serviceWorker: {
-          serviceWorkerVersion: "1047402503",
-        },
-      });
+      _flutter.loader
+        .loadEntrypoint({
+          serviceWorker: {
+            serviceWorkerVersion: ""3353203475"",
+          },
+        })
+        .then(function (engineInitializer) {
+          return engineInitializer.initializeEngine();
+        })
+        .then(function (appRunner) {
+          return appRunner.runApp();
+        });
     });
   </script>
 </body>
