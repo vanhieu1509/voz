@@ -10,15 +10,17 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1f2933">
   <link rel="icon" type="image/png" href="icons/Icon-192.png">
-  {{flutter_js}}
+    <script src="flutter.js" defer></script>
+<script>
   {{flutter_build_config}}
+  </script>
 </head>
 <body>
   <script>
     window.addEventListener('load', function (ev) {
       _flutter.loader.load({
         serviceWorker: {
-          serviceWorkerVersion: "{{flutter_service_worker_version}}",
+          serviceWorkerVersion: {{flutter_service_worker_version}},
         },
       });
     });
