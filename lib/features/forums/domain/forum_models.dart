@@ -1,22 +1,14 @@
 import 'package:equatable/equatable.dart';
 
 class ForumCategory extends Equatable {
-  const ForumCategory({
-    required this.id,
-    required this.title,
-    required this.section,
-    this.description,
-    this.iconName,
-  });
+  const ForumCategory({required this.id, required this.title, required this.description});
 
   final String id;
   final String title;
-  final String section;
-  final String? description;
-  final String? iconName;
+  final String description;
 
   @override
-  List<Object?> get props => [id, title, section, description, iconName];
+  List<Object?> get props => [id, title, description];
 }
 
 class ForumSummary extends Equatable {
