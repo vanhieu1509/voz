@@ -18,11 +18,18 @@
 <body>
   <script>
     window.addEventListener('load', function (ev) {
-      _flutter.loader.load({
-        serviceWorker: {
-          serviceWorkerVersion: {{flutter_service_worker_version}},
-        },
-      });
+      _flutter.loader
+        .loadEntrypoint({
+          serviceWorker: {
+            serviceWorkerVersion: "{{flutter_service_worker_version}}",
+          },
+        })
+        .then(function (engineInitializer) {
+          return engineInitializer.initializeEngine();
+        })
+        .then(function (appRunner) {
+          return appRunner.runApp();
+        });
     });
   </script>
 </body>
