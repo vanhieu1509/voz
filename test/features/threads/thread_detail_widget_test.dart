@@ -10,10 +10,15 @@ void main() {
   testWidgets('thread detail renders provided posts', (tester) async {
     final threadPage = ThreadPage(
       thread: const ThreadSummary(id: '1', title: 'Test Thread', author: 'Tester'),
-      posts: const [
+      posts: [
         PostModel(id: 'p1', author: 'Tester', content: 'Hello', postedAt: DateTime(2024, 1, 1)),
       ],
-      page: 1,
+      pagination: const ThreadPagination(
+        currentPage: 1,
+        totalPages: 1,
+        nextPageUrl: null,
+        previousPageUrl: null,
+      ),
     );
 
     await tester.pumpWidget(
@@ -30,5 +35,6 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Hello'), findsOneWidget);
+    expect(find.text('Page 1 of 1'), findsOneWidget);
   });
 }
