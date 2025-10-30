@@ -1,0 +1,10 @@
+{
+  "name": "voz_forum_app",
+  "short_name": "Voz Forum",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#1f2933",
+  "description": "Cross-platform voz.vn companion",
+  "icons": []
+}
